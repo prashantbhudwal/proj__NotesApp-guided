@@ -6,22 +6,28 @@ import Split from "react-split";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
+type Note = {
+  id: number;
+  body: string;
+};
+
 export default function Home() {
-  const [notes, setNotes] = useState([]);
-  const [currentNoteId, setCurrentNoteId] = useState(
+  const [notes, setNotes] = useState<Note[]>([]);
+
+  const [currentNoteId, setCurrentNoteId] = useState<number | "">(
     (notes[0] && notes[0].id) || ""
   );
 
   function createNewNote() {
     const newNote = {
-      id: nanoid(),
+      id: parseInt(nanoid(), 36),
       body: "# Type your markdown note's title here",
     };
     setNotes((prevNotes) => [newNote, ...prevNotes]);
     setCurrentNoteId(newNote.id);
   }
 
-  function updateNote(text) {
+  function updateNote(text: string) {
     setNotes((oldNotes) =>
       oldNotes.map((oldNote) => {
         return oldNote.id === currentNoteId
@@ -42,7 +48,7 @@ export default function Home() {
   return (
     <main>
       {notes.length > 0 ? (
-        <Split sizes={[30, 70]} direction="horizontal" className="split">
+        <Split sizes={[30, 70]} direction="horizontal" className="flex">
           <Sidebar
             notes={notes}
             currentNote={findCurrentNote()}
