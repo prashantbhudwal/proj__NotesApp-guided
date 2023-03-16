@@ -3,7 +3,15 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 
-export default function Editor({ currentNote, updateNote }) {
+type UpdateNoteFn = (text: string) => void;
+
+export default function Editor({
+  currentNote,
+  updateNote,
+}: {
+  currentNote: any;
+  updateNote: UpdateNoteFn;
+}) {
   const mdParser = new MarkdownIt({
     html: true,
     linkify: true,

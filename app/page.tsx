@@ -27,13 +27,11 @@ export default function Home() {
     setCurrentNoteId(newNote.id);
   }
 
-  function updateNote(text: string) {
+  function updateNote({ text }: { text: string }) {
     setNotes((oldNotes) =>
-      oldNotes.map((oldNote) => {
-        return oldNote.id === currentNoteId
-          ? { ...oldNote, body: text }
-          : oldNote;
-      })
+      oldNotes.map((oldNote) =>
+        oldNote.id === currentNoteId ? { ...oldNote, body: text } : oldNote
+      )
     );
   }
 
