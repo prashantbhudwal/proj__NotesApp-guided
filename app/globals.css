@@ -129,9 +129,6 @@ button:focus {
     cursor: col-resize;
 }
 
-.split {
-    display: flex;
-}
 
 .no-notes {
     width: 100%;
