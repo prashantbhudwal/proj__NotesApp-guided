@@ -3,7 +3,7 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 
-type UpdateNoteFn = (text: string) => void;
+type UpdateNoteFn = ({ text }: { text: string }) => void;
 
 export default function Editor({
   currentNote,

@@ -1,5 +1,16 @@
 "use client";
-export default function Sidebar(props) {
+type Note = {
+  id: number;
+  body: string;
+};
+
+type SidebarProps = {
+  notes: Note[];
+  currentNote: Note;
+  setCurrentNoteId: (id: number | "") => void;
+  newNote: () => void;
+};
+export default function Sidebar(props: SidebarProps) {
   const noteElements = props.notes.map((note, index) => (
     <div key={note.id}>
       <div
